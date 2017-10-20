@@ -73,14 +73,14 @@ App.Views.Tasks = Backbone.View.extend({
         this.collection.each(this.changeTask, this);
         return this;
     },
-	changeTask: function(task) {
-	    var taskView = new App.Views.Task({ model:task });
-	    this.$el.append(taskView.render().el);
-	},
-	initialize: function(){
-	    _.bindAll(this, 'changeTask'); // or put third argument [context] in 'on()'
-	    this.collection.on('add',this.changeTask);
-	}
+    changeTask: function(task) {
+       var taskView = new App.Views.Task({ model:task });
+       this.$el.append(taskView.render().el);
+    },
+    initialize: function(){
+        _.bindAll(this, 'changeTask'); // or put third argument [context] in 'on()'
+        this.collection.on('add',this.changeTask);
+    }
 });
 App.Views.AddTask = Backbone.View.extend({
     el: '#addTask',
