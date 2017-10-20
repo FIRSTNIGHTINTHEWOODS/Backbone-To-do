@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>backbone</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <h2> Tasks </h2>
+    <div class="Tasks"> <span>Add task</span>
+        <form action="" id="addTask">
+         <input type="text"> 
+         <input type="submit"> 
+        </form>  
+    </div>
+
+<script type="text/template" id="tasks-template">
+    
+    <b> Title: </b> <%= title %> <button id="edit"> Edit </button> <button id="delete"> Delete </button>   <br/> 
+    <b>Priority:</b> <%= priority %> <br/> <button id="increment"> + </button> <button id="decrement"> - </button> 
+    <hr/>
+</script>
+<!-- <script type="text/template" id="products-template">
+    <b> Name: </b> <%= name %> <br/> <hr/>
+    <b> asin: </b> <%= asin %> <br/> <hr/>
+    <b> id: </b> <%= id %> <br/> <hr/>
+</script> -->
+<script src="js/jquery-3.2.1.js"></script>
+
+
+<script src="js/underscore.js"></script>
+
+<script src="js/backbone.js"></script>
+
+<script src="js/index.js"></script>
+
+</body>
+</html>
