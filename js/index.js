@@ -1,12 +1,12 @@
 // все события backbone помещаются в events
 
+$(function (){
 
-
-	window.App = {
-		Models: {},
-		Views: {},
-		Collections: {}
-	};
+window.App = {
+	Models: {},
+	Views: {},
+	Collections: {}
+};
 
 function  setTemplateId(id){
 	return _.template($('#' + id).html());
@@ -118,3 +118,4 @@ var tasksCollection = new App.Collections.Tasks([
 	var addTaskView = new App.Views.AddTask({ collection: tasksCollection}); ;
 	$('.Tasks').append(tasksView.render().$el);
 
+});
