@@ -69,6 +69,7 @@ App.Collections.Tasks = Backbone.Collection.extend({
 });
 
 App.Views.Tasks = Backbone.View.extend({
+<<<<<<< HEAD
 	tagName: 'ul',
 	render: function() {
 		this.collection.each(this.changeTask, this);
@@ -82,6 +83,21 @@ App.Views.Tasks = Backbone.View.extend({
 		_.bindAll(this, 'changeTask'); // or put third argument in 'on'
 		this.collection.on('add',this.changeTask);
 	}
+=======
+    tagName: 'ul',
+    render: function() {
+        this.collection.each(this.changeTask, this);
+        return this;
+    },
+    changeTask: function(task) {
+       var taskView = new App.Views.Task({ model:task });
+       this.$el.append(taskView.render().el);
+    },
+    initialize: function(){
+        _.bindAll(this, 'changeTask'); // or put third argument [context] in 'on()'
+        this.collection.on('add',this.changeTask);
+    }
+>>>>>>> daf54778bb03125c44ad572ba5da7b176352c008
 });
 App.Views.AddTask = Backbone.View.extend({
 	el: '#addTask',
