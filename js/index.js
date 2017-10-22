@@ -1,4 +1,7 @@
 // все события backbone помещаются в events
+function setTemplateId(id)  {
+	return _.template($('#' + id).html());
+}
 
 $(function (){
 
@@ -8,9 +11,8 @@ window.App = {
 	Collections: {}
 };
 
-function  setTemplateId(id){
-	return _.template($('#' + id).html());
-}
+
+
 
 App.Models.Task = Backbone.Model.extend({
     defaults: {
@@ -119,3 +121,49 @@ var tasksCollection = new App.Collections.Tasks([
 	$('.Tasks').append(tasksView.render().$el);
 
 });
+/////////////// Marionette example app
+
+var ModelView = Mn.View.extend({
+	tagName: 'li',
+	template: setTemplateId('mn-template')
+});
+
+var ModelCollectionView = Mn.CompositeView.extend({
+	el: '#base-element',
+	template: setTemplateId('mn-template-form'),
+	childView: ModelView,
+	childViewContainer: 'ul',
+	ui: {
+		task: '#task_id',
+		priority: '#priority_id',
+		button: '#add_task'
+	},
+	triggers: {
+		'click button': 'add:task'  //  onAddTask = add:task
+	},
+	collectionEvents: {
+		add: 'taskCreated'
+	},
+	onAddTask: function(){
+		this.collection.add({
+			task: this.ui.task.val(),
+			priority: this.ui.priority.val()
+		});
+	},
+	taskCreated: function(){
+		this.ui.task.val("");
+		this.ui.priority.val("");
+	}
+});
+
+var todo = new ModelCollectionView({
+	collection: new Backbone.Collection(
+		[
+			{ task: 'cook', priority: '1'},
+			{ task: 'sleep', priority: '2'},
+			{ task: 'work', priority: '3'}
+		]
+	)
+});
+
+todo.render();	
